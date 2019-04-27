@@ -1,6 +1,6 @@
 {
   "name": "map-search",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^16.8.6",
@@ -20,7 +20,6 @@
     "patch-push": "npm version patch && git push --follow-tags",
     "minor-push": "npm version minor && git push --follow-tags",
     "major-important-push": "npm version major && git push --follow-tags"
-
   },
   "eslintConfig": {
     "extends": "react-app"
