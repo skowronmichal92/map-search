@@ -1,48 +1,45 @@
 import * as actionTypes from '../actions/actionTypes';
-// import _tmpSearchResult from '../data/_tmpSearchResult.json';
+import _tmpSearchResult from '../data/_tmpSearchResult.json';
 
 const initialState = {
-  // result: _tmpSearchResult,
-  result: null,
-  errorResultInList: false,
+  result: _tmpSearchResult,
+  resultId: 3083271,
+  // result: null,
+  // resultId: null,
   list: [],
   listMap: {},
 };
 
+const getResultId = result => result.hit.objectID;
+
 const getResult = (state, action) => {  
+  const { result } = action.payload;
+  const id = getResultId(result);    
+
   return {
     ...state,
-    result: action.payload.result,
-    errorResultInList: false
+    result,
+    resultId: id
   }
 }
 
 const addResultToList = (state, action) => {
-  const { result } = state.result;
-  const { place_id } = result;  
+  const { result } = state;
+  const id = getResultId(result);  
 
-  if (state.listMap[place_id]) {
-    return {
-      ...state,
-      errorResultInList: true,
-    }
+  const place = {
+    id,
+    name: result.value,
+    lat: result.latlng.lat,
+    lng: result.latlng.lng,
   }
-  else {
-    const place = {
-      id: result.place_id,
-      address: result.formatted_address,
-      lat: result.geometry.location.lat,
-      lng: result.geometry.location.lng,
-    }
-    const list = state.list.concat(place);
-    const listMap = {...state.listMap, [place_id]: place};
+  const list = state.list.concat(place);
+  const listMap = {...state.listMap, [id]: place};
 
-    return {
-      ...state,
-      errorResultInList: false,
-      list,
-      listMap, 
-    }
+  return {
+    ...state,
+    list,
+    listMap, 
   }
 
 }
@@ -54,9 +51,7 @@ const search = (state = initialState, action) => {
     case actionTypes.ADD_RESULT_TO_LIST:
       return addResultToList(state, action);
     default:
-      {
-        return state;
-      }
+      return state;
   }
 };
 
