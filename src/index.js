@@ -5,6 +5,8 @@ import { Provider } from 'react-redux';
 // import * as serviceWorker from './scripts/serviceWorker';
 import thunk from 'redux-thunk';
 
+import './scripts/other/fontAwesome';
+
 // import './scripts/other/polyfills';
 
 import App from './scripts/containers/App/App';
@@ -19,6 +21,8 @@ const rootReducer = combineReducers(reducers);
 const store = createStore(rootReducer, composeEnhancers(
   applyMiddleware(thunk)
 ));
+
+
 
 const app = (
     <Provider store={store}>

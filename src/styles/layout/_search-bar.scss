@@ -1,0 +1,25 @@
+.search-bar {
+    position: fixed;
+    top: $main__padding;
+    left: $main__padding;
+    width: calc(100vw - 2*#{$main__padding});
+    height: 3.5rem;
+    background-color: transparent;
+    // padding: .5rem;
+    display: flex;
+
+    &__input {
+        height: 100%;
+        width: 100%;
+        padding: .5rem;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+
+    &__btn {
+        white-space: nowrap;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        font-size: 1.2rem;
+    }
+}

@@ -3,9 +3,19 @@
 @import "utils/vars/colors";
 @import "utils/vars/sizes";
 
+@import '~bootstrap/dist/css/bootstrap.min.css'; 
+
 @import "base/reset";
 @import "base/fonts";
 @import "base/base";
 
+@import "overall/button-icon";
+@import "overall/control";
+
 @import "layout/main";
 @import "layout/map";
+@import "layout/search-bar";
+
+@import "components/form-control";
+
+

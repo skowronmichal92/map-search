@@ -1,14 +1,17 @@
 // import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-    center: {
-        lat: 50.061389, 
-        lng: 19.938333
+    view: {
+        center: {
+            lat: 50.061389, 
+            lng: 19.938333
+        },
+        zoom: 10,
     },
-    zoom: 10
+    instance: null,
 };
 
-const reducer = (state = initialState, action) => {
+const map = (state = initialState, action) => {
   switch (action.type) {
     default: {
         return state;
@@ -16,4 +19,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default map;
