@@ -6,7 +6,7 @@ import { ListGroup } from 'reactstrap';
 import FeaturesListItem from '../../components/FeatureListItem/FeatureListItem';
 
 class FeaturesList extends Component {
-  onFeatureClick = (name, lat, lng) => {
+  showFeature = (name, lat, lng) => {
     const latlngDecimals = 4;
     
     const marker = new window.google.maps.Marker({
@@ -39,7 +39,7 @@ class FeaturesList extends Component {
           <FeaturesListItem 
             key={searchListItem.id}
             name={searchListItem.name}
-            clicked={() => this.onFeatureClick(searchListItem.name, searchListItem.lat, searchListItem.lng)}/>
+            clicked={() => this.showFeature(searchListItem.name, searchListItem.lat, searchListItem.lng)}/>
         ))}
       </ListGroup>
     );
