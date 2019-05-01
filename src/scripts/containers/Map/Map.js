@@ -1,12 +1,14 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 
+import * as actions from '../../store/actions';
+
 const MapC = (props) => {
   const mapRef = useRef(null);
-  const { center, zoom } = props;    
+  const { center, zoom, setMapInstance } = props;    
 
   useEffect(() => {
-    new window.google.maps.Map(mapRef.current, {
+    const map = new window.google.maps.Map(mapRef.current, {
       center, 
       zoom,
       disableDefaultUI: true,
@@ -16,10 +18,12 @@ const MapC = (props) => {
       streetViewControl: true,
       rotateControl: true,
       fullscreenControl: false
-    });  
-  }, [center, zoom]);
-  
+    });
 
+    setMapInstance(map);
+
+  }, [center, zoom, setMapInstance]);
+  
   return (
       <div id="map" className="map" ref={mapRef}></div>
   );
@@ -32,4 +36,10 @@ const mapStateToProps = state => {
   }
 }
 
-export default connect(mapStateToProps)(MapC);
+const mapDispatchToProps = dispatch => {
+  return {
+    setMapInstance: (map) => dispatch(actions.setMapInstance(map)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MapC);

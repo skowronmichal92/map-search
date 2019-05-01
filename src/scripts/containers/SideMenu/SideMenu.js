@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 
 import Backdrop from '../../components/Backdrop/Backdrop';
+import FeaturesList from '../../containers/FeaturesList/FeaturesList';
 
 import * as actions from '../../store/actions';
 
@@ -24,7 +25,7 @@ class SideMenu extends Component {
             </div>
           </div>
           <div className="side-menu__content">
-            FeaturesList
+            <FeaturesList/>
           </div>
         </div>
 

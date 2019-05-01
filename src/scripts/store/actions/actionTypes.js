@@ -5,3 +5,5 @@ export const OPEN_ALERT_MODAL = 'OPEN_ALERT_MODAL';
 export const CLOSE_ALERT_MODAL = 'CLOSE_ALERT_MODAL';
 
 export const TOGGLE_MENU = 'TOGGLE_MENU';
+
+export const SET_MAP_INSTANCE = 'SET_MAP_INSTANCE';

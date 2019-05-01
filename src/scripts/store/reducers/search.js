@@ -16,8 +16,6 @@ const getResultId = result => result.place_id;
 
 const getResult = (state, action) => {  
   const { result } = action.payload;
-  console.log(result);
-  
   const id = getResultId(result);    
 
   return {

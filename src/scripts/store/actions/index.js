@@ -4,6 +4,10 @@ export {
 } from './error'; 
 
 export {
+  setMapInstance,
+} from './map';
+
+export {
   toggleMenu,
 } from './menu';
 

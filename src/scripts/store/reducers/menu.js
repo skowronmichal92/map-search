@@ -1,7 +1,7 @@
 import * as actionTypes from '../actions/actionTypes';
 
 const initialState = {
-  open: false,
+  open: true,
 };
 
 const toggleMenu = (state, action) => {   
