@@ -1,19 +1,23 @@
 import * as actionTypes from '../actions/actionTypes';
-import _tmpSearchResult from '../data/_tmpSearchResult.json';
+
+import _tmpSearchResult from '../data/_tmpSearchResult';
+import _tmpSearchList from '../data/_tmpSearchList';
 
 const initialState = {
-  result: _tmpSearchResult,
-  resultId: 3083271,
-  // result: null,
-  // resultId: null,
+  // result: _tmpSearchResult,
+  result: null,
+  resultId: null,
   list: [],
+  // // list: _tmpSearchList,
   listMap: {},
 };
 
-const getResultId = result => result.hit.objectID;
+const getResultId = result => result.place_id;
 
 const getResult = (state, action) => {  
   const { result } = action.payload;
+  console.log(result);
+  
   const id = getResultId(result);    
 
   return {
@@ -25,13 +29,13 @@ const getResult = (state, action) => {
 
 const addResultToList = (state, action) => {
   const { result } = state;
-  const id = getResultId(result);  
+  const id = getResultId(result);    
 
   const place = {
     id,
-    name: result.value,
-    lat: result.latlng.lat,
-    lng: result.latlng.lng,
+    name: result.formatted_address,
+    lat: result.geometry.location.lat(),
+    lng: result.geometry.location.lng(),
   }
   const list = state.list.concat(place);
   const listMap = {...state.listMap, [id]: place};

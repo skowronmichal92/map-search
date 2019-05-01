@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 
-// import places from 'places';
 import { Input } from 'reactstrap';
 
 import ButtonIcon from '../../components/ButtonIcon/ButtonIcon'; 
@@ -15,27 +14,18 @@ const SearchBar = (props) => {
   
   useEffect(() => {
     const onPlaceChanged = (e) => {
-      
-      getResult(e.suggestion);
+      const place = autocomplete.current.getPlace();
+      getResult(place);
     }
 
-    // autocomplete.current = window.places({
-    //   container: searchInputRef.current
-    // });
+    autocomplete.current = new window.google.maps.places.Autocomplete(searchInputRef.current, {
+      // types: ['address ']
+    });
 
-    // autocomplete.current.on('change', onPlaceChanged);
+    autocomplete.current.setFields(['address_component', 'formatted_address', 'geometry', 'place_id']);
+    autocomplete.current.addListener('place_changed', onPlaceChanged);
 
   }, [getResult]);  
-
-  const onAddResult = () => {
-    const id = props.resultId;      
-
-    if (!props.listMap[id]) {
-      props.addResultToList();
-    } else {
-      props.openAlertModal('Place already added to list!');  
-    }
-  }
 
   return (
       <div className="search-bar control">
@@ -44,7 +34,7 @@ const SearchBar = (props) => {
           className="search-bar__btn" 
           color="success"
           icon="plus" 
-          clicked={onAddResult}>ADD</ButtonIcon>
+          clicked={props.addResultToList}>ADD</ButtonIcon>
       </div>
   );
 }
