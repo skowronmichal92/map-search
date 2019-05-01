@@ -1,11 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import classNames from 'classnames';
 import { Button } from 'reactstrap';
 
 const ButtonIcon = (props) => {
-    const {color} = props;
+    const color = props.color || 'default';
     
     const buttonIconClassName = classNames({
         'button-icon': true,
@@ -22,13 +23,22 @@ const ButtonIcon = (props) => {
 
     return (
         <Button className={buttonIconClassName} color={color} onClick={props.clicked}>
-            <span 
+            {props.children && (
+                <span 
                 className={buttonIconTextClassName}>{props.children}</span>
+            )}
             <FontAwesomeIcon 
                 className={buttonIconIconClassName} 
                 icon={props.icon}/>
         </Button>
     );
 }
+
+ButtonIcon.propTypes = {
+    className: PropTypes.string,
+    color: PropTypes.string,
+    icon: PropTypes.string,
+    clicked: PropTypes.func,
+};
 
 export default ButtonIcon;

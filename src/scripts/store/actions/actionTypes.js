@@ -4,3 +4,4 @@ export const ADD_RESULT_TO_LIST = 'ADD_RESULT_TO_LIST';
 export const OPEN_ALERT_MODAL = 'OPEN_ALERT_MODAL';
 export const CLOSE_ALERT_MODAL = 'CLOSE_ALERT_MODAL';
 
+export const TOGGLE_MENU = 'TOGGLE_MENU';

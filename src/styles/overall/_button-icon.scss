@@ -1,5 +1,5 @@
 .button-icon {
-    &__icon {
+    &__icon:nth-child(n+2) {
         margin-left: .5rem;
     }
 }

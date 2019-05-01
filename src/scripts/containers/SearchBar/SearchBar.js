@@ -29,9 +29,14 @@ const SearchBar = (props) => {
 
   return (
       <div className="search-bar control">
+        <ButtonIcon 
+          className="search-bar__menu-btn" 
+          color="primary"
+          icon="bars"
+          clicked={props.toggleMenu}/>
         <Input className="search-bar__input" type="text" innerRef={searchInputRef} placeholder="enter a location..."/>
         <ButtonIcon 
-          className="search-bar__btn" 
+          className="search-bar__add-btn" 
           color="success"
           icon="plus" 
           clicked={props.addResultToList}>ADD</ButtonIcon>
@@ -53,6 +58,7 @@ const mapDispatchToProps = dispatch => {
     getResult: (place) => dispatch(actions.getResult(place)),
     addResultToList: () => dispatch(actions.addResultToList()),
     openAlertModal: (text) => dispatch(actions.openAlertModal(text)),
+    toggleMenu: () => dispatch(actions.toggleMenu()),
   }
 }
 

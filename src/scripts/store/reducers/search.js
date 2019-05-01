@@ -4,11 +4,11 @@ import _tmpSearchResult from '../data/_tmpSearchResult';
 import _tmpSearchList from '../data/_tmpSearchList';
 
 const initialState = {
-  // result: _tmpSearchResult,
-  result: null,
+  result: _tmpSearchResult,
+  // result: null,
   resultId: null,
-  list: [],
-  // // list: _tmpSearchList,
+  // list: [],
+  list: _tmpSearchList,
   listMap: {},
 };
 
