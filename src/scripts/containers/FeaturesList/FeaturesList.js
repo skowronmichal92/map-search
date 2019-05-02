@@ -5,41 +5,83 @@ import { ListGroup } from 'reactstrap';
 
 import FeaturesListItem from '../../components/FeatureListItem/FeatureListItem';
 
+import * as actions from '../../store/actions';
+
 class FeaturesList extends Component {
-  showFeature = (name, lat, lng) => {
+  state = {
+    activeItem: null,
+    markers: []
+  }
+
+  getPopupContent(name, lat, lng) {
     const latlngDecimals = 4;
-    
-    const marker = new window.google.maps.Marker({
-        position: {
-            lat,
-            lng
-        },
-        map: this.props.map,
-    });
 
-    const infowindow = new window.google.maps.InfoWindow({
-        content: `
-            <h4>${name}</h4>
-            <p>
-                <span>latitude: </span><strong>${lat.toFixed(latlngDecimals)}&deg;</strong><br>
-                <span>longitude: </span><strong>${lng.toFixed(latlngDecimals)}&deg;</strong>
-            </p>
-        `
-      });
+    return `
+      <h4>${name}</h4>
+      <p>
+          <span>latitude: </span><strong>${lat.toFixed(latlngDecimals)}&deg;</strong><br>
+          <span>longitude: </span><strong>${lng.toFixed(latlngDecimals)}&deg;</strong>
+      </p>
+    `
+  }
 
-    marker.addListener('click', () => {
-        infowindow.open(this.props.map, marker);
+  removeMarkers() {
+    for (var i = 0; i < this.state.markers.length; i++) {
+      this.state.markers[i].setMap(null);
+    }
+
+    this.setState({
+      markers: []
     });
   }
 
+  createMarker(map, lat, lng) {
+    return new window.google.maps.Marker({
+      position: {
+          lat,
+          lng
+      },
+      map,
+    });
+  }
+
+  createPopup(name, lat, lng) {
+    return new window.google.maps.InfoWindow({
+      content: this.getPopupContent(name, lat, lng)
+    })
+  }
+
+  showFeature = (id, name, lat, lng) => {
+    this.removeMarkers();
+
+    const marker = this.createMarker(this.props.map, lat, lng);
+    const popup = this.createPopup(name, lat, lng);
+
+    marker.addListener('click', () => {
+      popup.open(this.props.map, marker);
+    });
+
+    this.props.map.setZoom(10);
+    this.props.map.panTo(marker.position);
+
+    this.setState((state) => ({
+      activeItem: id,
+      markers: state.markers.concat(marker)
+    }));
+
+    this.props.toggleMenu();
+  }
+
   render() {
+    
     return (
       <ListGroup className="features-list">
         {this.props.searchList.map((searchListItem) => (
           <FeaturesListItem 
             key={searchListItem.id}
             name={searchListItem.name}
-            clicked={() => this.showFeature(searchListItem.name, searchListItem.lat, searchListItem.lng)}/>
+            active={this.state.activeItem === searchListItem.id}
+            clicked={() => this.showFeature(searchListItem.id, searchListItem.name, searchListItem.lat, searchListItem.lng)}/>
         ))}
       </ListGroup>
     );
@@ -53,5 +95,10 @@ const mapStateToProps = state => {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    toggleMenu: () => dispatch(actions.toggleMenu()),
+  }
+}
 
-export default connect(mapStateToProps)(FeaturesList);
+export default connect(mapStateToProps, mapDispatchToProps)(FeaturesList);

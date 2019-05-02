@@ -6,7 +6,11 @@ import { ListGroupItem } from 'reactstrap';
 const FeatureListItem = (props) => {
 
     return (
-        <ListGroupItem tag="button" action onClick={props.clicked}>{props.name}</ListGroupItem>
+        <ListGroupItem 
+            active={props.active}
+            tag="button" 
+            action 
+            onClick={props.clicked}>{props.name}</ListGroupItem>
     );
 }
 
