@@ -35,7 +35,7 @@ const MapC = (props) => {
         zoomControl: true,
         zoomControlOptions: {
           position: window.google.maps.ControlPosition.RIGHT_TOP
-      },
+        },
         mapTypeControl: false,
         scaleControl: true,
         streetViewControl: true,

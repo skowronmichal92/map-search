@@ -1,3 +1,7 @@
 .gmnoprint.gm-bundled-control {
     top: $search-bar__height + 1rem!important;
+
+    @include pageWidth(sm) {
+        top: 0!important;
+    }
 }

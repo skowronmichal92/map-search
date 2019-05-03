@@ -8,6 +8,12 @@
     // padding: .5rem;
     display: flex;
 
+    @include pageWidth(sm) {
+        left: $menu__width + 2*$main__padding;
+        width: calc(100vw - #{$menu__width} - 4*#{$main__padding} - 4rem);
+        max-width: 50rem;
+    }
+
     &__menu-btn {
         color: $color__text--light;
         font-size: 1.8rem;
@@ -20,6 +26,9 @@
         padding: .5rem;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
+    }
+
+    &__input:nth-child(2) {
         margin-left: 1rem;
     }
 

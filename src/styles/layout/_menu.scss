@@ -1,0 +1,28 @@
+$menu-header__height: 3.5rem;
+
+.menu {
+  position: fixed;
+  top: $main__padding;
+  left: $main__padding;
+  width: $menu__width;
+  font-size: 1.4rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: $menu-header__height;
+    padding: .5rem;
+    background-color: $color__main;
+    color: $color__text--light;
+    border-top-left-radius: .4rem;
+    border-top-right-radius: .4rem;
+  }
+
+  &__content {
+    border-bottom-left-radius: .4rem;
+    border-bottom-right-radius: .4rem;
+    max-height: calc(100vh - 3*#{$main__padding} - #{$menu-header__height} - 3rem);
+    overflow-y: auto;
+  }
+}

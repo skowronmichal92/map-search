@@ -1,11 +1,13 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 
+import MediaQuery from 'react-responsive';
 import { Input } from 'reactstrap';
 
 import ButtonIcon from '../../components/ButtonIcon/ButtonIcon'; 
 
 import * as actions from '../../store/actions';
+import { pageWidths } from '../../other/mediaQuery';
 
 const SearchBar = (props) => {
   const searchInputRef = useRef();
@@ -29,11 +31,16 @@ const SearchBar = (props) => {
 
   return (
       <div className="search-bar control">
-        <ButtonIcon 
-          className="search-bar__menu-btn" 
-          color="primary"
-          icon="bars"
-          clicked={props.toggleMenu}/>
+        <MediaQuery minWidth={pageWidths.sm}>
+          {(matches) => !matches && (
+            <ButtonIcon 
+            className="search-bar__menu-btn" 
+            color="primary"
+            icon="bars"
+            clicked={props.toggleMenu}/>
+          )}
+        </MediaQuery>
+ 
         <Input className="search-bar__input" type="text" innerRef={searchInputRef} placeholder="enter a location..."/>
         <ButtonIcon 
           className="search-bar__add-btn" 
