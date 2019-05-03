@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import Layout from '../../hoc/wrappers/Layout/Layout';
 import MapC from '../Map/Map';
@@ -11,11 +12,21 @@ const App = (props) => {
   return (
     <Layout>
       <MapC/>
-      <SearchBar/>
-      <SideMenu/>
-      <Alert/>
+      {props.map && (
+        <>
+          <SearchBar/>
+          <SideMenu/>
+          <Alert/>
+        </>
+      )}
     </Layout>
   );
 }
 
-export default App;
+const mapStateToProps = state => {
+  return {
+    map: state.map.instance,
+  }
+}
+
+export default connect(mapStateToProps)(App);

@@ -26,9 +26,7 @@ class FeaturesList extends Component {
   }
 
   removeMarkers() {
-    for (var i = 0; i < this.state.markers.length; i++) {
-      this.state.markers[i].setMap(null);
-    }
+    this.state.markers.forEach(marker => marker.setMap(null));
 
     this.setState({
       markers: []
@@ -57,6 +55,8 @@ class FeaturesList extends Component {
     const marker = this.createMarker(this.props.map, lat, lng);
     const popup = this.createPopup(name, lat, lng);
 
+    popup.open(this.props.map, marker);
+
     marker.addListener('click', () => {
       popup.open(this.props.map, marker);
     });
@@ -64,7 +64,7 @@ class FeaturesList extends Component {
     this.props.map.setZoom(10);
     this.props.map.panTo(marker.position);
 
-    this.setState((state) => ({
+    this.setState(state => ({
       activeItem: id,
       markers: state.markers.concat(marker)
     }));
