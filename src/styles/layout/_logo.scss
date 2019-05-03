@@ -1,0 +1,9 @@
+.logo {
+    position: fixed;
+    right: $main__padding;
+    bottom: 2*$main__padding;
+
+    &__img {
+        height: 2.5rem;
+    }
+}

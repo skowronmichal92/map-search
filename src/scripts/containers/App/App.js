@@ -6,6 +6,7 @@ import MapC from '../Map/Map';
 import SearchBar from '../SearchBar/SearchBar';
 import Alert from '../Alert/Alert';
 import SideMenu from '../SideMenu/SideMenu';
+import Logo from '../../components/Logo/Logo';
 
 const App = (props) => {
 
@@ -16,9 +17,11 @@ const App = (props) => {
         <>
           <SearchBar/>
           <SideMenu/>
-          <Alert/>
+          
         </>
       )}
+      <Alert/>
+      <Logo/>
     </Layout>
   );
 }
