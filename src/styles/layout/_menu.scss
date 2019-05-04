@@ -24,5 +24,7 @@ $menu-header__height: 3.5rem;
     border-bottom-right-radius: .4rem;
     max-height: calc(100vh - 3*#{$main__padding} - #{$menu-header__height} - 3rem);
     overflow-y: auto;
+    background-color: $color__bg;
+    padding: 1rem;
   }
 }

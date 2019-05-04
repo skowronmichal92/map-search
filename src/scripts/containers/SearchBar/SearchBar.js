@@ -45,7 +45,7 @@ const SearchBar = (props) => {
           <FontAwesomeIcon 
                 className="search-bar__input-icon" 
                 icon="search-location"/>
-          <Input className="search-bar__input" type="text" innerRef={searchInputRef} placeholder="enter a location..."/>
+          <Input className="search-bar__input" type="text" innerRef={searchInputRef} placeholder="search for a location..."/>
         </div>
         <ButtonIcon 
           className="search-bar__add-btn" 

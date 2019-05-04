@@ -84,7 +84,7 @@ class FeaturesList extends Component {
             clicked={() => this.showFeature(searchListItem.id, searchListItem.name, searchListItem.lat, searchListItem.lng)}/>
         ))}
       </ListGroup>
-    );
+    )
   }
 }
 

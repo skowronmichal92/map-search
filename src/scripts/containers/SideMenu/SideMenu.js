@@ -4,6 +4,7 @@ import classNames from 'classnames';
 
 import Backdrop from '../../components/Backdrop/Backdrop';
 import FeaturesList from '../../containers/FeaturesList/FeaturesList';
+import FeaturesEmpty from '../../components/FeaturesEmpty/FeaturesEmpty'; 
 
 import * as actions from '../../store/actions';
 
@@ -25,7 +26,7 @@ class SideMenu extends Component {
             </div>
           </div>
           <div className="side-menu__content">
-            <FeaturesList/>
+            {this.props.searchList.length ? <FeaturesList/> : <FeaturesEmpty/>}
           </div>
         </div>
 
@@ -42,7 +43,8 @@ class SideMenu extends Component {
 
 const mapStateToProps = state => {
   return {
-    open: state.menu.open
+    open: state.menu.open,
+    searchList: state.search.list
   }
 }
 
