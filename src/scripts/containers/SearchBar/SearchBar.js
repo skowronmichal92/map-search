@@ -30,6 +30,15 @@ const SearchBar = (props) => {
 
   }, [getResult]);  
 
+  const onPlaceAdd = () => {
+    if (!props.listMap[props.resultId]) {
+      props.addResultToList();
+    }
+    else {
+      props.openAlertModal('Place already added to list.');
+    }
+  }
+
   return (
       <div className="search-bar control">
         <MediaQuery minWidth={pageWidths.sm}>
@@ -51,14 +60,13 @@ const SearchBar = (props) => {
           className="search-bar__add-btn" 
           color="success"
           icon="plus" 
-          clicked={props.addResultToList}>ADD</ButtonIcon>
+          clicked={onPlaceAdd}>ADD</ButtonIcon>
       </div>
   );
 }
 
 const mapStateToProps = state => {
   return {
-    result: state.search.result,
     resultId: state.search.resultId,
     list: state.search.list,
     listMap: state.search.listMap

@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Badge, Card, CardHeader, CardBody, CardText } from 'reactstrap';
+import { Badge, Card, CardHeader, CardBody } from 'reactstrap';
 
 import FeaturesEmpty from '../FeaturesEmpty/FeaturesEmpty'; 
 
@@ -14,9 +14,7 @@ const FeaturesCard = (props) => {
         <Badge color="secondary">{props.list.length}</Badge>
       </CardHeader>
       <CardBody>
-        <CardText>
-          {props.list.length ? props.children : <FeaturesEmpty/>}
-        </CardText>
+        {props.list.length ? props.children : <FeaturesEmpty/>}
       </CardBody>
     </Card>
   );

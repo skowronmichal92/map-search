@@ -33,13 +33,14 @@ class FeaturesList extends Component {
     });
   }
 
-  createMarker(map, lat, lng) {
+  createMarker(map, id, lat, lng) {
     return new window.google.maps.Marker({
       position: {
           lat,
           lng
       },
       map,
+      id
     });
   }
 
@@ -50,9 +51,15 @@ class FeaturesList extends Component {
   }
 
   showFeature = (id, name, lat, lng) => {
+    const { markers } = this.state;
+
+    if (markers.length && markers[0].id === id) {
+      return false;
+    }
+    
     this.removeMarkers();
 
-    const marker = this.createMarker(this.props.map, lat, lng);
+    const marker = this.createMarker(this.props.map, id, lat, lng);
     const popup = this.createPopup(name, lat, lng);
 
     popup.open(this.props.map, marker);

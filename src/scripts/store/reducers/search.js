@@ -4,10 +4,12 @@ import _tmpSearchResult from '../data/_tmpSearchResult';
 import _tmpSearchList from '../data/_tmpSearchList';
 
 const initialState = {
-  result: _tmpSearchResult,
   // result: null,
-  resultId: null,
+  // resultId: null,
   // list: [],
+  // listMap: {},
+  result: _tmpSearchResult,
+  resultId: "qwertyuiop",
   list: _tmpSearchList,
   listMap: {},
 };
