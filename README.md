@@ -13,4 +13,3 @@ Search for features, add to the list and show on map.
 - Firefox 66
 - Opera 58
 - Microsoft Edge 17
-- Internet Explorer 11
