@@ -5,9 +5,8 @@ import { Provider } from 'react-redux';
 // import * as serviceWorker from './scripts/serviceWorker';
 import thunk from 'redux-thunk';
 
+import './scripts/other/polyfills';
 import './scripts/other/fontAwesome';
-
-// import './scripts/other/polyfills';
 
 import App from './scripts/containers/App/App';
 import './styles/styles.scss';
