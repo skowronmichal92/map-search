@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import classNames from 'classnames';
 
 import Backdrop from '../../components/Backdrop/Backdrop';
-import FeaturesList from '../../containers/FeaturesList/FeaturesList';
-import FeaturesEmpty from '../../components/FeaturesEmpty/FeaturesEmpty'; 
+import FeaturesList from '../FeaturesList/FeaturesList';
+import FeaturesCard from '../../components/FeaturesCard/FeaturesCard';
 
 import * as actions from '../../store/actions';
 
@@ -19,16 +19,11 @@ class SideMenu extends Component {
 
     return (
       <>
-        <div className={classes}>
-          <div className="side-menu__header">
-            <div className="side-menu__title-container">
-              <span className="side-menu__title">Features List</span>
-            </div>
-          </div>
-          <div className="side-menu__content">
-            {this.props.searchList.length ? <FeaturesList/> : <FeaturesEmpty/>}
-          </div>
-        </div>
+        <FeaturesCard
+           className={classes}
+           list={this.props.searchList}>
+          <FeaturesList/>
+        </FeaturesCard>
 
         {this.props.open && (
           <Backdrop

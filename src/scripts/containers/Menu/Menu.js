@@ -2,22 +2,16 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import FeaturesList from '../FeaturesList/FeaturesList'; 
-import FeaturesEmpty from '../../components/FeaturesEmpty/FeaturesEmpty'; 
+import FeaturesCard from '../../components/FeaturesCard/FeaturesCard';  
 
 const Menu = (props) => {   
-  
 
   return (
-    <div className="menu">
-      <div className="menu__header">
-        <div className="menu__title-container">
-          <span className="menu__title">Features List</span>
-        </div>
-      </div>
-      <div className="menu__content">
-        {props.searchList.length ? <FeaturesList/> : <FeaturesEmpty/>}
-      </div>
-    </div>
+    <FeaturesCard
+        className="menu"
+        list={props.searchList}>
+      <FeaturesList/>
+    </FeaturesCard>
   );
 }
 

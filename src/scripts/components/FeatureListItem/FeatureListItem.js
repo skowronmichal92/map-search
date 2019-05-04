@@ -9,10 +9,12 @@ const FeatureListItem = (props) => {
     return (
         <ListGroupItem 
                 active={props.active}
+                className="features-list__item"
                 tag="button" 
                 action 
                 onClick={props.clicked}>
             <FontAwesomeIcon
+                className="features-list__item-icon"
                 icon="map-marker-alt"/>
             {props.name}
         </ListGroupItem>

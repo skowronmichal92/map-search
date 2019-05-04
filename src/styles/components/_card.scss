@@ -1,0 +1,19 @@
+.card {
+    border: 0;
+
+    &-header {
+        background-color: $color__main;
+        color: $color__text--light;
+        display: flex;
+        align-items: center;
+    }
+
+    &-body {
+        padding: 0;
+        overflow-y: auto;
+    }
+
+    &-header-text {
+        margin-right: auto;
+    }
+}

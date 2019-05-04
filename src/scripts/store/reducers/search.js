@@ -7,8 +7,8 @@ const initialState = {
   result: _tmpSearchResult,
   // result: null,
   resultId: null,
-  list: [],
-  // list: _tmpSearchList,
+  // list: [],
+  list: _tmpSearchList,
   listMap: {},
 };
 

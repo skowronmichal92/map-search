@@ -1,50 +1,26 @@
 export default {
   address_components: [{
-      long_name: 'Alicante',
-      short_name: 'Alicante',
+      long_name: 'Kraków',
+      short_name: 'Kraków',
       types: [
         'locality',
         'political'
       ]
     },
-    {
-      long_name: 'Alicante',
-      short_name: 'A',
-      types: [
-        'administrative_area_level_2',
-        'political'
-      ]
-    },
-    {
-      long_name: 'Valencian Community',
-      short_name: 'Valencian Community',
-      types: [
-        'administrative_area_level_1',
-        'political'
-      ]
-    },
-    {
-      long_name: 'Spain',
-      short_name: 'ES',
-      types: [
-        'country',
-        'political'
-      ]
-    }
   ],
-  formatted_address: 'Alicante, Spain',
+  formatted_address: 'Kraków, Poland',
   geometry: {
     location: {
-      lat: 38.3459963,
-      lng: -0.4906855000000405
+      lat: () => 50.061637,
+      lng: () => 19.937469
     },
     viewport: {
-      south: 38.32474879999999,
-      west: -0.5416291999999885,
-      north: 38.3909328,
-      east: -0.40341910000006465
+      south: () => 50.051637,
+      west: () => 19.927469,
+      north: () => 50.071637,
+      east: () => 19.947469
     }
   },
-  place_id: 'ChIJS6udO9o1Yg0R44ELrHKofR0',
+  place_id: 'qwertyuiop',
   html_attributions: []
 };

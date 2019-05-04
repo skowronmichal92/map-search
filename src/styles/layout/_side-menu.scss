@@ -26,25 +26,6 @@ $side-menu-header__height: 6rem;
     color: $color__text--light;
   }
 
-  &__title-container {
-    display: flex;
-    align-items: center;
-  }
-
-  &__title {
-    font-size: 1.6rem;
-  }
-
-  &__title-icon {
-    height: 2.6rem;
-    margin-right: .5rem;
-  }
-
-  &__close-container {
-    // padding: .5rem 1rem;
-    margin-left: auto;
-  }
-
   &__content {
     padding: 1rem;
     height: calc(100vh - #{$side-menu-header__height});
