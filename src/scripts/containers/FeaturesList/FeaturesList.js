@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { ListGroup } from 'reactstrap';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import FeaturesListItem from '../../components/FeatureListItem/FeatureListItem';
 
@@ -83,13 +84,18 @@ class FeaturesList extends Component {
     
     return (
       <ListGroup className="features-list">
-        {this.props.searchList.map((searchListItem) => (
-          <FeaturesListItem 
-            key={searchListItem.id}
-            name={searchListItem.name}
-            active={this.state.activeItem === searchListItem.id}
-            clicked={() => this.showFeature(searchListItem.id, searchListItem.name, searchListItem.lat, searchListItem.lng)}/>
-        ))}
+        <TransitionGroup component={null}>
+          {this.props.searchList.map((searchListItem) => (
+            <CSSTransition
+                key={searchListItem.id}
+                timeout={200}>
+              <FeaturesListItem 
+                name={searchListItem.name}
+                active={this.state.activeItem === searchListItem.id}
+                clicked={() => this.showFeature(searchListItem.id, searchListItem.name, searchListItem.lat, searchListItem.lng)}/>
+            </CSSTransition>
+          ))}
+        </TransitionGroup>
       </ListGroup>
     )
   }

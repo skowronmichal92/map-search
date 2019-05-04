@@ -1,6 +1,17 @@
 .features-list {
 
+    &__item.enter {
+        opacity: 0;
+    }
+
+    &__item.enter-active {
+        animation: slideIn .2s;
+    }
+
     &__item-icon {
         margin-right: .5rem;
     }
 }
+
+
+

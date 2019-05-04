@@ -6,6 +6,7 @@ $menu-header__height: 3.5rem;
   left: $main__padding;
   width: $menu__width;
   font-size: 1.4rem;
+  background: transparent;
 
   @include pageWidth(lg) {
     width: $menu__width--lg;

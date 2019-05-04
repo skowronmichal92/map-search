@@ -6,11 +6,12 @@
         color: $color__text--light;
         display: flex;
         align-items: center;
+        height: $search-bar__height;
     }
 
     &-body {
         padding: 0;
-        overflow-y: auto;
+        overflow: auto;
     }
 
     &-header-text {
