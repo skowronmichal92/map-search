@@ -38,7 +38,7 @@ const MapC = (props) => {
         },
         mapTypeControl: false,
         scaleControl: true,
-        streetViewControl: true,
+        streetViewControl: false,
         rotateControl: true,
         fullscreenControl: false
       });

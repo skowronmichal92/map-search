@@ -10,53 +10,5 @@ export default [
     name: 'Alicante, Spain',
     lat: 38.3459963,
     lng: -0.4906855000000405
-  },
-  {
-    id: 'ChIJS6udO9o1Yg0R44ELrHKofR01',
-    name: 'Alicante, Spain',
-    lat: 38.3459963,
-    lng: -0.4906855000000405
-  },
-  {
-    id: 'ChIJS6udO9o1Yg0R44ELrHKofR02',
-    name: 'Alicante, Spain',
-    lat: 38.3459963,
-    lng: -0.4906855000000405
-  },
-  {
-    id: 'ChIJS6udO9o1Yg0R44ELrHKofR03',
-    name: 'Alicante, Spain',
-    lat: 38.3459963,
-    lng: -0.4906855000000405
-  },
-  {
-    id: 'ChIJS6udO9o1Yg0R44ELrHKofR04',
-    name: 'Alicante, Spain',
-    lat: 38.3459963,
-    lng: -0.4906855000000405
-  },
-  {
-    id: 'ChIJS6udO9o1Yg0R44ELrHKofR05',
-    name: 'Alicante, Spain',
-    lat: 38.3459963,
-    lng: -0.4906855000000405
-  },
-  {
-    id: 'ChIJS6udO9o1Yg0R44ELrHKofR06',
-    name: 'Alicante, Spain',
-    lat: 38.3459963,
-    lng: -0.4906855000000405
-  },
-  {
-    id: 'ChIJS6udO9o1Yg0R44ELrHKofR07',
-    name: 'Alicante, Spain',
-    lat: 38.3459963,
-    lng: -0.4906855000000405
-  },
-  {
-    id: 'ChIJS6udO9o1Yg0R44ELrHKofR08',
-    name: 'Alicante, Spain',
-    lat: 38.3459963,
-    lng: -0.4906855000000405
   }
 ];

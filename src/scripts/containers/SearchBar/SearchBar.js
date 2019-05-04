@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import MediaQuery from 'react-responsive';
 import { Input } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import ButtonIcon from '../../components/ButtonIcon/ButtonIcon'; 
 
@@ -40,8 +41,12 @@ const SearchBar = (props) => {
             clicked={props.toggleMenu}/>
           )}
         </MediaQuery>
- 
-        <Input className="search-bar__input" type="text" innerRef={searchInputRef} placeholder="enter a location..."/>
+        <div className="search-bar__input-wrapper">
+          <FontAwesomeIcon 
+                className="search-bar__input-icon" 
+                icon="search-location"/>
+          <Input className="search-bar__input" type="text" innerRef={searchInputRef} placeholder="enter a location..."/>
+        </div>
         <ButtonIcon 
           className="search-bar__add-btn" 
           color="success"
