@@ -1,7 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 
-const backdrop = (props) => {
+import PropTypes from 'prop-types';
+
+const Backdrop = (props) => {
   const className = 'backdrop';
 
   const classes = classNames({
@@ -18,4 +20,10 @@ const backdrop = (props) => {
   );
 }
 
-export default backdrop;
+Backdrop.propTypes = {
+  show: PropTypes.bool,
+  animatedClose: PropTypes.bool,
+  clicked: PropTypes.func,
+};
+
+export default Backdrop;

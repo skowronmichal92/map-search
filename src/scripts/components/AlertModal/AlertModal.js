@@ -1,6 +1,8 @@
 import React from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
+import PropTypes from 'prop-types';
+
 const AlertModal = (props) => {
 
   return (
@@ -15,5 +17,12 @@ const AlertModal = (props) => {
     </Modal>
   );
 }
+
+AlertModal.propTypes = {
+  opened: PropTypes.bool,
+  toggle: PropTypes.bool,
+  className: PropTypes.string,
+  children: PropTypes.element,
+};
 
 export default AlertModal;
