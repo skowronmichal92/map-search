@@ -6,11 +6,9 @@ import ButtonIcon from '../ButtonIcon/ButtonIcon';
 import BadgeCount from '../BadgeCount/BadgeCount'; 
 
 const BadgeButton = (props) => {
-  const color = props.color || 'primary';
+  const color = props.color || 'success';
   const icon = props.icon || 'bars';
-  console.log(props);
   
-
   return (
     <div className="badge-button__wrapper">
       <ButtonIcon 

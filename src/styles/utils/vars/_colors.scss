@@ -7,8 +7,9 @@ $color__grey--40: hsl(0, 0, 40);
 $color__grey--83: hsl(0, 0, 83);
 $color__grey--96: hsl(0, 0, 96);
 
-$color__blue--50: hsl(211, 100%, 50%);
-
+$color__green--31: hsl(134, 61%, 31%);
+$color__green--41: hsl(134, 61%, 41%);
+$color__green--94: hsl(134, 61%, 94%);
 
 $color__text: $color__black--26;
 $color__text--light: $color__white;
@@ -18,4 +19,6 @@ $color__bg--light: $color__grey--83;
 
 $color__border: $color__grey--40;
 
-$color__main: $color__blue--50;
+$color__main: $color__green--41;
+$color__main--light: $color__green--94;
+$color__main--dark: $color__green--31;

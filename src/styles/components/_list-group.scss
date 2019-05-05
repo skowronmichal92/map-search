@@ -1,0 +1,8 @@
+.list-group {
+    &-item.active {
+        color: $color__main--dark;
+        background-color: $color__main--light;
+        border-color: $color__main--light;  
+    }
+}
+

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { ListGroupItem } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const FeatureListItem = (props) => {
+const FeatureListItem = (props) => { 
 
     return (
         <ListGroupItem 
