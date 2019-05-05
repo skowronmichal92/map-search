@@ -20,9 +20,12 @@ const AlertModal = (props) => {
 
 AlertModal.propTypes = {
   opened: PropTypes.bool,
-  toggle: PropTypes.bool,
+  toggle: PropTypes.func,
   className: PropTypes.string,
-  children: PropTypes.element,
+  children: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
+  ]),
 };
 
 export default AlertModal;

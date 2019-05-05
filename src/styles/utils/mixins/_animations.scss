@@ -12,3 +12,36 @@
         margin-top: 0;
     }
 }
+
+$highlight__translete-x: .2rem;
+$highlight__scale: 1.5;
+$highlight__bgcolor--start: #6c757d;
+$highlight__bgcolor--end: crimson;
+
+@keyframes highlight {
+    0% { 
+        transform: translateX(0) scale(1);
+        background-color: $highlight__bgcolor--start;
+    }
+    20% {
+        transform: translateX(0) scale($highlight__scale);
+        background-color: $highlight__bgcolor--end;
+    }
+    30% {
+        transform: translateX($highlight__translete-x) scale($highlight__scale);
+    }
+    50% {
+        transform: translateX(-$highlight__translete-x) scale($highlight__scale);
+    }
+    70% {
+        transform: translateX($highlight__translete-x) scale($highlight__scale);
+    }
+    80% {
+        transform: translateX(0) scale($highlight__scale);
+        background-color: $highlight__bgcolor--end;
+    }
+    100% { 
+        transform: translateX(0) scale(1);
+        background-color: $highlight__bgcolor--start;
+    }
+}
