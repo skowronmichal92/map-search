@@ -8,10 +8,12 @@ const initialState = {
   resultId: null,
   list: [],
   listMap: {},
+  activeItem: null,
   // result: _tmpSearchResult,
   // resultId: "qwertyuiop",
   // list: _tmpSearchList,
   // listMap: {},
+  // activeItem: null,
 };
 
 const getResultId = result => result.place_id;
@@ -58,6 +60,13 @@ const addResultToList = (state, action) => {
 
 }
 
+const setActiveItem = (state, action) => {     
+  return {
+    ...state,
+    activeItem: action.payload.activeItem,
+  }
+}
+
 const search = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.RESET_RESULT:
@@ -66,6 +75,8 @@ const search = (state = initialState, action) => {
       return getResult(state, action);
     case actionTypes.ADD_RESULT_TO_LIST:
       return addResultToList(state, action);
+    case actionTypes.SET_ACTIVE_ITEM:
+      return setActiveItem(state, action);
     default:
       return state;
   }

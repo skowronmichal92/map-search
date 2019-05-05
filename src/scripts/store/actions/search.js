@@ -13,6 +13,13 @@ export const getResult = (result) => {
   }
 }
 
+export const setActiveItem = (activeItem) => {
+  return {
+    type: actionTypes.SET_ACTIVE_ITEM,
+    payload: { activeItem }
+  }
+}
+
 export const addResultToList = () => {
   return {
     type: actionTypes.ADD_RESULT_TO_LIST,

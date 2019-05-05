@@ -14,5 +14,6 @@ export {
 export {
   getResult,
   resetResult,
-  addResultToList
+  addResultToList,
+  setActiveItem
 } from './search';

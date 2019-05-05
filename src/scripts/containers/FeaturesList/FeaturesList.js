@@ -10,7 +10,6 @@ import * as actions from '../../store/actions';
 import withMarker from '../../hoc/enhancers/withMarker';
 
 const FeaturesList = (props) => {
-  const [activeItem, setActiveItem] = useState(null);
   const marker = useRef(null);
 
   const showFeature = (id, name, lat, lng) => {
@@ -34,7 +33,7 @@ const FeaturesList = (props) => {
 
     props.showMarker(props.map, featureMarker);
 
-    setActiveItem(id);
+    props.setActiveItem(id);
     marker.current = featureMarker;
 
     props.toggleMenu();
@@ -50,7 +49,7 @@ const FeaturesList = (props) => {
             <FeaturesListItem 
               name={searchListItem.name}
               address={searchListItem.address}
-              active={activeItem === searchListItem.id}
+              active={props.searchActiveItem === searchListItem.id}
               clicked={() => showFeature(searchListItem.id, searchListItem.name, searchListItem.lat, searchListItem.lng)}/>
           </CSSTransition>
         ))}
@@ -61,6 +60,7 @@ const FeaturesList = (props) => {
 
 const mapStateToProps = state => {
   return {
+    searchActiveItem: state.search.activeItem,
     searchList: state.search.list,
     map: state.map.instance
   }
@@ -69,6 +69,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     toggleMenu: () => dispatch(actions.toggleMenu()),
+    setActiveItem: (activeItem) => dispatch(actions.setActiveItem(activeItem)),
   }
 }
 
