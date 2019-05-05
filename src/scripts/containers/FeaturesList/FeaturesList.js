@@ -7,44 +7,11 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import FeaturesListItem from '../../components/FeatureListItem/FeatureListItem';
 
 import * as actions from '../../store/actions';
+import withMarker from '../../hoc/enhancers/withMarker';
 
 const FeaturesList = (props) => {
   const [activeItem, setActiveItem] = useState(null);
   const markers = useRef([]);
-
-  const getPopupContent = (name, lat, lng) => {
-    const latlngDecimals = 4;
-
-    return `
-      <h4>${name}</h4>
-      <p>
-          <span>latitude: </span><strong>${lat.toFixed(latlngDecimals)}&deg;</strong><br>
-          <span>longitude: </span><strong>${lng.toFixed(latlngDecimals)}&deg;</strong>
-      </p>
-    `
-  }
-
-  const removeMarkers = () => {
-    markers.current.forEach(marker => marker.setMap(null));
-    markers.current = [];
-  }
-
-  const createMarker = (map, id, lat, lng) => {
-    return new window.google.maps.Marker({
-      position: {
-          lat,
-          lng
-      },
-      map,
-      id
-    });
-  }
-
-  const createPopup = (name, lat, lng) => {
-    return new window.google.maps.InfoWindow({
-      content: getPopupContent(name, lat, lng)
-    })
-  }
 
   const showFeature = (id, name, lat, lng) => {
     
@@ -52,10 +19,10 @@ const FeaturesList = (props) => {
       return false;
     }
 
-    removeMarkers();
+    props.removeMarkers(markers.current);
 
-    const marker = createMarker(props.map, id, lat, lng);
-    const popup = createPopup(name, lat, lng);
+    const marker = props.createMarker(props.map, id, lat, lng);
+    const popup = props.createPopup(name, lat, lng);
 
     popup.open(props.map, marker);
 
@@ -63,8 +30,7 @@ const FeaturesList = (props) => {
       popup.open(props.map, marker);
     });
 
-    props.map.setZoom(10);
-    props.map.panTo(marker.position);
+    props.showMarker(props.map, marker);
 
     setActiveItem(id);
     markers.current.push(marker);
@@ -104,4 +70,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FeaturesList);
+export default connect(mapStateToProps, mapDispatchToProps)(withMarker(FeaturesList));

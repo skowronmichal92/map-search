@@ -1,13 +1,5 @@
 export default {
-  address_components: [{
-      long_name: 'Kraków',
-      short_name: 'Kraków',
-      types: [
-        'locality',
-        'political'
-      ]
-    },
-  ],
+  name: 'Kraków',
   formatted_address: 'Kraków, Poland',
   geometry: {
     location: {

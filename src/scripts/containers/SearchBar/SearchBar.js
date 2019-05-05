@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import { Input } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,12 +8,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ButtonIcon from '../../components/ButtonIcon/ButtonIcon'; 
 
 import * as actions from '../../store/actions';
+import withMarker from '../../hoc/enhancers/withMarker';
+import usePrevious from '../../hooks/usePrevious'; 
 
 const SearchBar = (props) => {
   const searchInputRef = useRef();
   const autocomplete = useRef();
-  const { getResult } = props;
-  
+  const marker = useRef(null);
+
+  const { getResult, result, map, createMarker, showMarker, removeMarker } = props;
+
+  const prevResult = usePrevious(result);
+
   useEffect(() => {
     const onPlaceChanged = (e) => {
       const place = autocomplete.current.getPlace();
@@ -24,7 +31,25 @@ const SearchBar = (props) => {
     autocomplete.current.setFields(['formatted_address', 'name', 'geometry', 'place_id']);
     autocomplete.current.addListener('place_changed', onPlaceChanged);
 
-  }, [getResult]);  
+  }, [getResult]);
+  
+  useEffect(() => {
+
+    if (marker.current) {
+      removeMarker(marker.current);
+    }
+    
+    if (result && !_.isEqual(result, prevResult)) {
+      const { place_id } = result;
+      const { lat, lng } = result.geometry.location;
+  
+      marker.current = createMarker(map, place_id, lat(), lng());
+      marker.current.setOpacity(.3);
+      
+      showMarker(map, marker.current);
+    }
+
+  }, [prevResult, result, map, createMarker, showMarker, removeMarker]); 
 
   const onPlaceAdd = () => {
     if (!props.result) {
@@ -69,7 +94,8 @@ const mapStateToProps = state => {
     result: state.search.result,
     resultId: state.search.resultId,
     list: state.search.list,
-    listMap: state.search.listMap
+    listMap: state.search.listMap,
+    map: state.map.instance
   }
 }
 
@@ -82,4 +108,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchBar);
+export default connect(mapStateToProps, mapDispatchToProps)(withMarker(SearchBar));

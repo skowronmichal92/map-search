@@ -1,17 +1,17 @@
 import * as actionTypes from '../actions/actionTypes';
 
-import _tmpSearchResult from '../data/_tmpSearchResult';
-import _tmpSearchList from '../data/_tmpSearchList';
+// import _tmpSearchResult from '../data/_tmpSearchResult';
+// import _tmpSearchList from '../data/_tmpSearchList';
 
 const initialState = {
-  // result: null,
-  // resultId: null,
-  // list: [],
-  // listMap: {},
-  result: _tmpSearchResult,
-  resultId: "qwertyuiop",
-  list: _tmpSearchList,
+  result: null,
+  resultId: null,
+  list: [],
   listMap: {},
+  // result: _tmpSearchResult,
+  // resultId: "qwertyuiop",
+  // list: _tmpSearchList,
+  // listMap: {},
 };
 
 const getResultId = result => result.place_id;
