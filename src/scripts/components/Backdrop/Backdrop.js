@@ -8,7 +8,7 @@ const Backdrop = (props) => {
 
   const classes = classNames({
     [className]: true,
-    [`${className}--active ${className}--z-index`]: props.show,
+    [`${className}--active`]: props.show,
     [`${className}--z-index`]: props.animatedClose
   });
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+
 import classNames from 'classnames';
+import { Transition } from 'react-transition-group';
 
 import Backdrop from '../../components/Backdrop/Backdrop';
 import FeaturesList from '../FeaturesList/FeaturesList';
@@ -23,12 +25,18 @@ const SideMenu = (props) => {
         <FeaturesList/>
       </FeaturesCard>
 
-      {props.open && (
-        <Backdrop
-          show={props.open}
-          animatedClose={true}
-          clicked={props.toggleMenu}/>
-      )}
+      <Transition in={props.open} timeout={400}>
+        {state => {
+          const show = state === 'entering' ? false : props.open;
+          return (state !== 'exited') ? (
+            <Backdrop
+              show={show}
+              animatedClose={true}
+              clicked={props.toggleMenu}/>
+            ) : null;
+        }}
+      </Transition>
+
     </>
   );
 }
