@@ -1,11 +1,36 @@
 .search-bar {
+    position: fixed;
+    top: $main__padding;
+    left: $main__padding;
+    width: calc(100vw - 2*#{$main__padding});
+    height: $search-bar__height;
+    background-color: transparent;
+    // padding: .5rem;
     display: flex;
-    width: 100%;  
+
+    @include pageWidth(sm) {
+        left: $menu__width + 2*$main__padding;
+        width: calc(100vw - #{$menu__width} - 4*#{$main__padding} - 4rem);
+        max-width: 50rem;
+    }
+
+    @include pageWidth(lg) {
+        left: $menu__width--lg + 2*$main__padding;
+        width: calc(100vw - #{$menu__width--lg} - 4*#{$main__padding} - 4rem);
+    }
+
+    &__menu-btn-wrapper {
+        flex: 0 0 $search-bar__height;
+    }
 
     &__input-wrapper {
         height: 100%;
         width: 100%;
         position: relative;
+    }
+
+    &__input-wrapper:nth-child(2) {
+        margin-left: 1rem;
     }
 
     &__input-icon {

@@ -11,10 +11,10 @@ class BadgeCount extends Component {
     super(props);
 
     this.duration = 4000;
-  }
 
-  state = {
-    animate: false,
+    this.state = {
+      animate: false,
+    }
   }
 
   componentDidUpdate(prevProps) {

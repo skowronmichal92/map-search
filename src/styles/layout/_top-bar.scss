@@ -1,0 +1,28 @@
+.top-bar {
+    position: fixed;
+    top: $main__padding;
+    left: $main__padding;
+    width: calc(100vw - 2*#{$main__padding});
+    height: $search-bar__height;
+    background-color: transparent;
+    display: flex;
+ 
+    @include pageWidth(sm) {
+        left: $menu__width + 2*$main__padding;
+        width: calc(100vw - #{$menu__width} - 4*#{$main__padding} - 4rem);
+        max-width: 50rem;
+    }
+
+    @include pageWidth(lg) {
+        left: $menu__width--lg + 2*$main__padding;
+        width: calc(100vw - #{$menu__width--lg} - 4*#{$main__padding} - 4rem);
+    }
+
+    .badge-button__wrapper {
+        flex: 0 0 $search-bar__height;
+    }
+
+    .search-bar:nth-child(2) {
+        margin-left: 1rem;
+    }
+}

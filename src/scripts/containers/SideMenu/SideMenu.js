@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 
@@ -8,32 +8,29 @@ import FeaturesCard from '../../components/FeaturesCard/FeaturesCard';
 
 import * as actions from '../../store/actions';
 
-class SideMenu extends Component {
+const SideMenu = (props) => {
 
-  render() {
- 
-    const classes = classNames({
-      'side-menu': true,
-      'side-menu--active': this.props.open,
-    });
+  const classes = classNames({
+    'side-menu': true,
+    'side-menu--active': props.open,
+  });
 
-    return (
-      <>
-        <FeaturesCard
-           className={classes}
-           list={this.props.searchList}>
-          <FeaturesList/>
-        </FeaturesCard>
+  return (
+    <>
+      <FeaturesCard
+          className={classes}
+          list={props.searchList}>
+        <FeaturesList/>
+      </FeaturesCard>
 
-        {this.props.open && (
-          <Backdrop
-            show={this.props.open}
-            animatedClose={true}
-            clicked={this.props.toggleMenu}/>
-        )}
-      </>
-    );
-  }
+      {props.open && (
+        <Backdrop
+          show={props.open}
+          animatedClose={true}
+          clicked={props.toggleMenu}/>
+      )}
+    </>
+  );
 }
 
 const mapStateToProps = state => {

@@ -5,7 +5,7 @@ import MediaQuery from 'react-responsive';
 
 import Layout from '../../hoc/wrappers/Layout/Layout';
 import MapC from '../Map/Map';
-import SearchBar from '../SearchBar/SearchBar';
+import TopBar from '../TopBar/TopBar';
 import Menu from '../Menu/Menu';
 import SideMenu from '../SideMenu/SideMenu';
 import Alert from '../Alert/Alert';
@@ -20,7 +20,7 @@ const App = (props) => {
       <MapC/>
       {props.map && (
         <>
-          <SearchBar/>
+          <TopBar/>
           <MediaQuery minWidth={pageWidths.sm}>
             {(matches) => matches ? <Menu/> : <SideMenu/>}
           </MediaQuery>  

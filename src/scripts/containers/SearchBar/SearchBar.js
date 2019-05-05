@@ -1,15 +1,12 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 
-import MediaQuery from 'react-responsive';
 import { Input } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import ButtonIcon from '../../components/ButtonIcon/ButtonIcon'; 
-import BadgeCount from '../../components/BadgeCount/BadgeCount'; 
 
 import * as actions from '../../store/actions';
-import { pageWidths } from '../../other/mediaQuery';
 
 const SearchBar = (props) => {
   const searchInputRef = useRef();
@@ -22,9 +19,7 @@ const SearchBar = (props) => {
       getResult(place);
     }
 
-    autocomplete.current = new window.google.maps.places.Autocomplete(searchInputRef.current, {
-      // types: ['address ']
-    });
+    autocomplete.current = new window.google.maps.places.Autocomplete(searchInputRef.current);
 
     autocomplete.current.setFields(['address_component', 'formatted_address', 'geometry', 'place_id']);
     autocomplete.current.addListener('place_changed', onPlaceChanged);
@@ -47,39 +42,25 @@ const SearchBar = (props) => {
   }
 
   return (
-      <div className="search-bar control">
-
-        <MediaQuery minWidth={pageWidths.sm}>
-          {(matches) => !matches && (
-            <div className="search-bar__menu-btn-wrapper">
-              <ButtonIcon 
-                className="search-bar__menu-btn" 
-                color="primary"
-                icon="bars"
-                clicked={props.toggleMenu}/>
-              <BadgeCount className="search-bar__menu-icon" count={props.list.length}/>
-            </div>
-          )}
-        </MediaQuery>
-
-        <div className="search-bar__input-wrapper">
-          <FontAwesomeIcon 
-                className="search-bar__input-icon" 
-                icon="search-location"/>
-          <Input 
-            className="search-bar__input" 
-            type="text" 
-            innerRef={searchInputRef} 
-            placeholder="search for a location..."
-            onChange={props.resetResult}/>
-        </div>
-
-        <ButtonIcon 
-          className="search-bar__add-btn" 
-          color="success"
-          icon="plus" 
-          clicked={onPlaceAdd}>ADD</ButtonIcon>
+    <div className="search-bar">
+      <div className="search-bar__input-wrapper">
+        <FontAwesomeIcon 
+            className="search-bar__input-icon" 
+            icon="search-location"/>
+        <Input 
+          className="search-bar__input" 
+          type="text" 
+          innerRef={searchInputRef} 
+          placeholder="search for a location..."
+          onChange={props.resetResult}/>
       </div>
+
+      <ButtonIcon 
+        className="search-bar__add-btn" 
+        color="success"
+        icon="plus" 
+        clicked={onPlaceAdd}>ADD</ButtonIcon>
+    </div>
   );
 }
 
@@ -98,7 +79,6 @@ const mapDispatchToProps = dispatch => {
     resetResult: () => dispatch(actions.resetResult()),
     addResultToList: () => dispatch(actions.addResultToList()),
     openAlertModal: (text) => dispatch(actions.openAlertModal(text)),
-    toggleMenu: () => dispatch(actions.toggleMenu()),
   }
 }
 
