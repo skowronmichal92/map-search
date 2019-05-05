@@ -21,7 +21,8 @@ const SideMenu = (props) => {
     <>
       <FeaturesCard
           className={classes}
-          list={props.searchList}>
+          list={props.searchList}
+          close={props.toggleMenu}>
         <FeaturesList/>
       </FeaturesCard>
 

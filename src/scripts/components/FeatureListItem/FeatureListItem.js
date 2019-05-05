@@ -16,15 +16,15 @@ const FeatureListItem = (props) => {
             <FontAwesomeIcon
                 className="features-list__item-icon"
                 icon="map-marker-alt"/>
-            {props.name}
+            <span className="features-list__item-name">{props.name}</span>
+            <small className="features-list__item-address">{props.address}</small>
         </ListGroupItem>
     );
 }
 
 FeatureListItem.propTypes = {
     name: PropTypes.string,
-    lat: PropTypes.number,
-    lng: PropTypes.number,
+    address: PropTypes.string,
     clicked: PropTypes.func,
 };
 

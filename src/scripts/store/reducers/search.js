@@ -42,7 +42,8 @@ const addResultToList = (state, action) => {
 
   const place = {
     id,
-    name: result.formatted_address,
+    name: result.name,
+    address: result.formatted_address,
     lat: result.geometry.location.lat(),
     lng: result.geometry.location.lng(),
   }

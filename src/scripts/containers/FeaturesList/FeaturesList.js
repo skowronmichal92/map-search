@@ -81,6 +81,7 @@ const FeaturesList = (props) => {
               timeout={200}>
             <FeaturesListItem 
               name={searchListItem.name}
+              address={searchListItem.address}
               active={activeItem === searchListItem.id}
               clicked={() => showFeature(searchListItem.id, searchListItem.name, searchListItem.lat, searchListItem.lng)}/>
           </CSSTransition>

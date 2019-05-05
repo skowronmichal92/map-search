@@ -21,7 +21,7 @@ const SearchBar = (props) => {
 
     autocomplete.current = new window.google.maps.places.Autocomplete(searchInputRef.current);
 
-    autocomplete.current.setFields(['address_component', 'formatted_address', 'geometry', 'place_id']);
+    autocomplete.current.setFields(['formatted_address', 'name', 'geometry', 'place_id']);
     autocomplete.current.addListener('place_changed', onPlaceChanged);
 
   }, [getResult]);  

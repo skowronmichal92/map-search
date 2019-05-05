@@ -11,6 +11,17 @@
     &__item-icon {
         margin-right: .5rem;
     }
+
+    &__item-address {
+        display: block;
+        margin-left: 1.8rem;
+    }
+
+
+    &__empty {
+        padding: 1rem;
+        background-color: $color__bg;
+    }
 }
 
 

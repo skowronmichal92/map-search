@@ -17,4 +17,11 @@
     &-header-text {
         margin-right: auto;
     }
+
+    &-header-close {
+        margin-left: 1rem;
+        font-size: 1.8rem;
+        padding: .5rem;
+        cursor: pointer;
+    }
 }
