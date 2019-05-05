@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { connect } from 'react-redux';
 
 import { ListGroup } from 'reactstrap';
@@ -10,7 +10,7 @@ import * as actions from '../../store/actions';
 
 const FeaturesList = (props) => {
   const [activeItem, setActiveItem] = useState(null);
-  const [markers, setMarkers] = useState([]);
+  const markers = useRef([]);
 
   const getPopupContent = (name, lat, lng) => {
     const latlngDecimals = 4;
@@ -25,8 +25,8 @@ const FeaturesList = (props) => {
   }
 
   const removeMarkers = () => {
-    markers.forEach(marker => marker.setMap(null));
-    setMarkers([]);
+    markers.current.forEach(marker => marker.setMap(null));
+    markers.current = [];
   }
 
   const createMarker = (map, id, lat, lng) => {
@@ -47,11 +47,11 @@ const FeaturesList = (props) => {
   }
 
   const showFeature = (id, name, lat, lng) => {
-
-    if (markers.length && markers[0].id === id) {
+    
+    if (markers.current.length && markers.current[0].id === id) {
       return false;
     }
-    
+
     removeMarkers();
 
     const marker = createMarker(props.map, id, lat, lng);
@@ -67,11 +67,11 @@ const FeaturesList = (props) => {
     props.map.panTo(marker.position);
 
     setActiveItem(id);
-    setMarkers(markers.concat(marker));
+    markers.current.push(marker);
 
     props.toggleMenu();
   }
-
+  
   return (
     <ListGroup className="features-list">
       <TransitionGroup component={null}>
