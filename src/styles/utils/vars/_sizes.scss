@@ -1,5 +1,4 @@
 $main__padding: 1rem;
-$main__z-index: 1000;
 
 $search-bar__height: 3.5rem;
 
@@ -9,3 +8,8 @@ $side-menu__transition-time: .4s;
 
 $menu__width: 20rem;
 $menu__width--lg: 30rem;
+
+
+$main__z-index: 1000;
+$backdrop__z-index: 1.5*$main__z-index;
+$side-menu__z-index: 2*$main__z-index;

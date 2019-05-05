@@ -11,6 +11,6 @@
   }
 
   &--z-index {
-    z-index: $main__z-index - 100;
+    z-index: $backdrop__z-index;
   }
 }
