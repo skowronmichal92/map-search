@@ -11,29 +11,31 @@ import withMarker from '../../hoc/enhancers/withMarker';
 
 const FeaturesList = (props) => {
   const [activeItem, setActiveItem] = useState(null);
-  const markers = useRef([]);
+  const marker = useRef(null);
 
   const showFeature = (id, name, lat, lng) => {
     
-    if (markers.current.length && markers.current[0].id === id) {
+    if (marker.current && marker.current.id === id) {
       return false;
     }
 
-    props.removeMarkers(markers.current);
-
-    const marker = props.createMarker(props.map, id, lat, lng);
+    if (marker.current) {
+      props.removeMarker(marker.current);
+    }
+    
+    const featureMarker = props.createMarker(props.map, id, lat, lng);
     const popup = props.createPopup(name, lat, lng);
 
-    popup.open(props.map, marker);
+    popup.open(props.map, featureMarker);
 
-    marker.addListener('click', () => {
-      popup.open(props.map, marker);
+    featureMarker.addListener('click', () => {
+      popup.open(props.map, featureMarker);
     });
 
-    props.showMarker(props.map, marker);
+    props.showMarker(props.map, featureMarker);
 
     setActiveItem(id);
-    markers.current.push(marker);
+    marker.current = featureMarker;
 
     props.toggleMenu();
   }

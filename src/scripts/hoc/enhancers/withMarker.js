@@ -36,10 +36,10 @@ const withMarker = WrappedComponent => (props) => {
         map.panTo(marker.position);
     }
 
-    const removeMarkers = (markers) => {
-        markers.forEach(marker => marker.setMap(null));
-        markers = [];
-    }
+    // const removeMarkers = (markers) => {
+    //     markers.forEach(marker => marker.setMap(null));
+    //     markers = [];
+    // }
 
     const removeMarker = (marker) => {
         marker.setMap(null);
@@ -51,7 +51,6 @@ const withMarker = WrappedComponent => (props) => {
         createPopup,
         createMarker,
         showMarker,
-        removeMarkers,
         removeMarker
     }
 
