@@ -1,5 +1,11 @@
 import * as actionTypes from './actionTypes';
 
+export const resetResult = (result) => {
+  return {
+    type: actionTypes.RESET_RESULT
+  }
+}
+
 export const getResult = (result) => {
   return {
     type: actionTypes.GET_RESULT,

@@ -13,5 +13,6 @@ export {
 
 export {
   getResult,
+  resetResult,
   addResultToList
 } from './search';

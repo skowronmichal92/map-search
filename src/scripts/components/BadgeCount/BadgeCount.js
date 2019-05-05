@@ -4,21 +4,30 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
 import { Badge } from 'reactstrap';
+import { setTimeout } from 'timers';
 
 class BadgeCount extends Component {  
+  constructor(props) {
+    super(props);
+
+    this.duration = 4000;
+  }
+
   state = {
-    animateBadge: false
+    animate: false,
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.count !== this.props.count) {
-      this.setState({ animateBadge: true });
+      this.setState({ animate: true });
+      setTimeout(() => this.setState({ animate: false }), this.duration + 1);
     }
   }
 
   render() {
     const badgeClassName = classNames({
-      'enter-active': this.state.animateBadge,
+      [this.props.className]: this.props.className,
+      'enter-active': this.state.animate,
     });
 
     return <Badge className={badgeClassName} color="secondary">{this.props.count}</Badge>
@@ -26,6 +35,7 @@ class BadgeCount extends Component {
 }
 
 BadgeCount.propTypes = {
+  className: PropTypes.string,
   count: PropTypes.number,
 };
 

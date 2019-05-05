@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 
 import * as actions from '../../store/actions';
-// import * as constants from '../../other/constants';
+import * as constants from '../../other/constants';
 
 const MapC = (props) => {
   const mapRef = useRef(null);
@@ -14,8 +14,8 @@ const MapC = (props) => {
   
   const addGoogleMapsScript = () => {
     const script = document.createElement("script");
-    // const apiParam = 'key=' + constants.API_KEY;
-    const apiParam = '';
+    const apiParam = 'key=' + constants.API_KEY;
+    // const apiParam = '';
 
     script.src = `https://maps.googleapis.com/maps/api/js?${apiParam}&libraries=places&language=en&callback=window.googleMapsPromiseResolve`;
     script.async = true;

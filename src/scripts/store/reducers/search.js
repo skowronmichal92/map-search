@@ -1,20 +1,29 @@
 import * as actionTypes from '../actions/actionTypes';
 
-import _tmpSearchResult from '../data/_tmpSearchResult';
-import _tmpSearchList from '../data/_tmpSearchList';
+// import _tmpSearchResult from '../data/_tmpSearchResult';
+// import _tmpSearchList from '../data/_tmpSearchList';
 
 const initialState = {
-  // result: null,
-  // resultId: null,
-  // list: [],
-  // listMap: {},
-  result: _tmpSearchResult,
-  resultId: "qwertyuiop",
-  list: _tmpSearchList,
+  result: null,
+  resultId: null,
+  list: [],
   listMap: {},
+  // result: _tmpSearchResult,
+  // resultId: "qwertyuiop",
+  // list: _tmpSearchList,
+  // listMap: {},
 };
 
 const getResultId = result => result.place_id;
+
+const resetResult = (state, action) => {     
+
+  return {
+    ...state,
+    result: null,
+    resultId: null
+  }
+}
 
 const getResult = (state, action) => {  
   const { result } = action.payload;
@@ -50,6 +59,8 @@ const addResultToList = (state, action) => {
 
 const search = (state = initialState, action) => {
   switch (action.type) {
+    case actionTypes.RESET_RESULT:
+      return resetResult(state, action);
     case actionTypes.GET_RESULT:
       return getResult(state, action);
     case actionTypes.ADD_RESULT_TO_LIST:

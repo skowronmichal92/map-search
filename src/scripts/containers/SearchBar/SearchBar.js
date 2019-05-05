@@ -6,6 +6,7 @@ import { Input } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import ButtonIcon from '../../components/ButtonIcon/ButtonIcon'; 
+import BadgeCount from '../../components/BadgeCount/BadgeCount'; 
 
 import * as actions from '../../store/actions';
 import { pageWidths } from '../../other/mediaQuery';
@@ -31,31 +32,48 @@ const SearchBar = (props) => {
   }, [getResult]);  
 
   const onPlaceAdd = () => {
-    if (!props.listMap[props.resultId]) {
-      props.addResultToList();
-    }
+    if (!props.result) {
+      props.openAlertModal('Select place from autocomplete search list.');
+    } 
     else {
-      props.openAlertModal('Place already added to list.');
+      if (!props.listMap[props.resultId]) {
+        props.addResultToList();
+      }
+      else {
+        props.openAlertModal('Place already added to list.');
+      }
     }
+
   }
 
   return (
       <div className="search-bar control">
+
         <MediaQuery minWidth={pageWidths.sm}>
           {(matches) => !matches && (
-            <ButtonIcon 
-            className="search-bar__menu-btn" 
-            color="primary"
-            icon="bars"
-            clicked={props.toggleMenu}/>
+            <div className="search-bar__menu-btn-wrapper">
+              <ButtonIcon 
+                className="search-bar__menu-btn" 
+                color="primary"
+                icon="bars"
+                clicked={props.toggleMenu}/>
+              <BadgeCount className="search-bar__menu-icon" count={props.list.length}/>
+            </div>
           )}
         </MediaQuery>
+
         <div className="search-bar__input-wrapper">
           <FontAwesomeIcon 
                 className="search-bar__input-icon" 
                 icon="search-location"/>
-          <Input className="search-bar__input" type="text" innerRef={searchInputRef} placeholder="search for a location..."/>
+          <Input 
+            className="search-bar__input" 
+            type="text" 
+            innerRef={searchInputRef} 
+            placeholder="search for a location..."
+            onChange={props.resetResult}/>
         </div>
+
         <ButtonIcon 
           className="search-bar__add-btn" 
           color="success"
@@ -67,6 +85,7 @@ const SearchBar = (props) => {
 
 const mapStateToProps = state => {
   return {
+    result: state.search.result,
     resultId: state.search.resultId,
     list: state.search.list,
     listMap: state.search.listMap
@@ -76,6 +95,7 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getResult: (place) => dispatch(actions.getResult(place)),
+    resetResult: () => dispatch(actions.resetResult()),
     addResultToList: () => dispatch(actions.addResultToList()),
     openAlertModal: (text) => dispatch(actions.openAlertModal(text)),
     toggleMenu: () => dispatch(actions.toggleMenu()),
