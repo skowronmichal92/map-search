@@ -1,54 +1,34 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
+import { Map, TileLayer, ZoomControl } from 'react-leaflet';
+import L from 'leaflet';
 
 import * as actions from '../../store/actions';
-import * as constants from '../../other/constants';
+
+// show markers
+delete L.Icon.Default.prototype._getIconUrl;
+L.Icon.Default.mergeOptions({
+  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+});
 
 const MapC = (props) => {
   const mapRef = useRef(null);
   const { center, zoom, setMapInstance } = props;
 
-  const googleMapsPromise = new Promise(resolve => {
-    window.googleMapsPromiseResolve = () => resolve();
-  });
-  
-  const addGoogleMapsScript = () => {
-    const script = document.createElement("script");
-    const apiParam = 'key=' + constants.API_KEY;
-    // const apiParam = '';
-
-    script.src = `https://maps.googleapis.com/maps/api/js?${apiParam}&libraries=places&language=en&callback=window.googleMapsPromiseResolve`;
-    script.async = true;
-    document.body.appendChild(script);
-  }
-
   useEffect(() => {
-    addGoogleMapsScript();
-  }, []);
-
-  useEffect(() => {
-    googleMapsPromise.then(() => {
-      const map = new window.google.maps.Map(mapRef.current, {
-        center, 
-        zoom,
-        disableDefaultUI: true,
-        zoomControl: true,
-        zoomControlOptions: {
-          position: window.google.maps.ControlPosition.RIGHT_TOP
-        },
-        mapTypeControl: false,
-        scaleControl: true,
-        streetViewControl: false,
-        rotateControl: true,
-        fullscreenControl: false
-      });
-  
-      setMapInstance(map);
-    });
-  }, [center, zoom, setMapInstance, googleMapsPromise]);
+    setMapInstance(mapRef.current.leafletElement);
+  }, [setMapInstance])
   
   return (
-      <div id="map" className="map" ref={mapRef}></div>
+    <Map id="map" className="map" ref={mapRef} center={center} zoom={zoom} zoomControl={false}>
+      <TileLayer
+        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+      />
+      <ZoomControl position="topright"/>
+    </Map>
   );
 }
 

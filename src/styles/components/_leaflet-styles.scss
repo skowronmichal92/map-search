@@ -1,0 +1,10 @@
+.leaflet {
+
+    &-top.leaflet-right {
+        top: $search-bar__height + 1rem;
+
+        @include pageWidth(sm) {
+            top: 0;
+        }
+    }
+}

@@ -7,7 +7,8 @@ $menu-header__height: 3.5rem;
   width: $menu__width;
   font-size: 1.4rem;
   background: transparent;
-
+  z-index: $main__z-index;
+  
   @include pageWidth(lg) {
     width: $menu__width--lg;
   }

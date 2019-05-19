@@ -25,11 +25,7 @@ const FeaturesList = (props) => {
     const featureMarker = props.createMarker(props.map, id, lat, lng);
     const popup = props.createPopup(name, lat, lng);
 
-    popup.open(props.map, featureMarker);
-
-    featureMarker.addListener('click', () => {
-      popup.open(props.map, featureMarker);
-    });
+    featureMarker.bindPopup(popup).openPopup();
 
     props.showMarker(props.map, featureMarker);
 

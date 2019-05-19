@@ -16,7 +16,7 @@ const initialState = {
   // activeItem: null,
 };
 
-const getResultId = result => result.place_id;
+const getResultId = result => result.hit.objectID;
 
 const resetResult = (state, action) => {     
 
@@ -40,14 +40,14 @@ const getResult = (state, action) => {
 
 const addResultToList = (state, action) => {
   const { result } = state;
-  const id = getResultId(result);    
-
+  const id = getResultId(result); 
+    
   const place = {
     id,
     name: result.name,
-    address: result.formatted_address,
-    lat: result.geometry.location.lat(),
-    lng: result.geometry.location.lng(),
+    address: result.value,
+    lat: result.latlng.lat,
+    lng: result.latlng.lng,
   }
   const list = state.list.concat(place);
   const listMap = {...state.listMap, [id]: place};

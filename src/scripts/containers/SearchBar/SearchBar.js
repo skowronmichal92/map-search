@@ -1,6 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import places from 'places.js';
 
 import { Input } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,14 +23,14 @@ const SearchBar = (props) => {
 
   useEffect(() => {
     const onPlaceChanged = (e) => {
-      const place = autocomplete.current.getPlace();
-      getResult(place);
+      getResult(e.suggestion);
     }
 
-    autocomplete.current = new window.google.maps.places.Autocomplete(searchInputRef.current);
-
-    autocomplete.current.setFields(['formatted_address', 'name', 'geometry', 'place_id']);
-    autocomplete.current.addListener('place_changed', onPlaceChanged);
+    autocomplete.current = places({
+      container: document.querySelector('#search')
+    });
+    
+    autocomplete.current.on('change', onPlaceChanged);
 
   }, [getResult]);
   
@@ -38,12 +39,12 @@ const SearchBar = (props) => {
     if (marker.current) {
       removeMarker(marker.current);
     }
-    
+        
     if (result && !_.isEqual(result, prevResult)) {
-      const { place_id } = result;
-      const { lat, lng } = result.geometry.location;
+      const { objectID } = result.hit;
+      const { lat, lng } = result.latlng;
   
-      marker.current = createMarker(map, place_id, lat(), lng());
+      marker.current = createMarker(map, objectID, lat, lng);
       marker.current.setOpacity(.3);
       
       showMarker(map, marker.current);
@@ -72,7 +73,8 @@ const SearchBar = (props) => {
         <FontAwesomeIcon 
             className="search-bar__input-icon" 
             icon="search-location"/>
-        <Input 
+        <Input
+          id="search"
           className="search-bar__input" 
           type="text" 
           innerRef={searchInputRef} 

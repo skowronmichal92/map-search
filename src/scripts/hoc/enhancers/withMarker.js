@@ -1,4 +1,5 @@
 import React from 'react';
+import L from 'leaflet';
 
 const withMarker = WrappedComponent => (props) => {
 
@@ -15,25 +16,20 @@ const withMarker = WrappedComponent => (props) => {
     }
 
     const createPopup = (name, lat, lng) => {
-        return new window.google.maps.InfoWindow({
-          content: getPopupContent(name, lat, lng)
-        });
+        return L.popup()
+            .setLatLng({ lat, lng })
+            .setContent(getPopupContent(name, lat, lng));
     }
 
     const createMarker = (map, id, lat, lng) => {
-        return new window.google.maps.Marker({
-            position: {
-                lat,
-                lng
-            },
-            map,
-            id
-        });
+        const marker = L.marker([lat, lng]).addTo(map);
+        marker.id = id;
+        return marker;
     }
 
-    const showMarker = (map, marker) => {
+    const showMarker = (map, marker) => {       
         map.setZoom(10);
-        map.panTo(marker.position);
+        map.panTo(marker.getLatLng());
     }
 
     // const removeMarkers = (markers) => {
@@ -42,8 +38,7 @@ const withMarker = WrappedComponent => (props) => {
     // }
 
     const removeMarker = (marker) => {
-        marker.setMap(null);
-        marker = null;
+        marker.remove();
     }
 
     const newProps = {
